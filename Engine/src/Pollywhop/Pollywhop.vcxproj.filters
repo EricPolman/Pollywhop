@@ -19,6 +19,18 @@
     <Filter Include="Header Files\Graphics">
       <UniqueIdentifier>{5fb1fb38-d80f-4ac5-b87c-cb31f17c5263}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics\3D">
+      <UniqueIdentifier>{7c6e29f3-5ccd-4fe5-bd38-02103af7a30c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\2D">
+      <UniqueIdentifier>{978656ea-00b9-40d9-84ea-69b51e2c6a8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\2D">
+      <UniqueIdentifier>{f350fa63-5377-4734-8b3a-1c35d452cadc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\3D">
+      <UniqueIdentifier>{731fcb36-b40e-49b9-9cb3-f4ea7506df8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,6 +42,9 @@
     <ClInclude Include="Graphics\Window.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pollywhop.cpp">
@@ -40,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\Window.cpp">
       <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Mesh.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

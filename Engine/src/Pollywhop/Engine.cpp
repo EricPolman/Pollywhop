@@ -5,11 +5,15 @@
 #include <glew\glew.h>
 #include <GLFW\glfw3.h>
 
+#include "Graphics/Mesh.h"
+
 using namespace PW;
 
 Engine::~Engine()
 {
 }
+
+std::shared_ptr<Graphics::Mesh> mesh;
 
 class Engine_Impl : public Engine
 {
@@ -19,6 +23,7 @@ class Engine_Impl : public Engine
 
   virtual void Initialize()
   {
+    glfwInit();
   }
   virtual void OpenWindow(int a_width, int a_height, std::string a_name)
   {
@@ -35,6 +40,9 @@ class Engine_Impl : public Engine
       std::cerr << "ERROR: " << glewGetErrorString(glewInitResult) << std::endl;
       exit(EXIT_FAILURE);
     }
+
+    mesh = Graphics::Mesh::Create();
+    mesh->Load();
   }
 
   virtual void Run()
@@ -47,7 +55,7 @@ class Engine_Impl : public Engine
    */
   virtual void Update()
   {
-
+    mesh->Render();
   }
   virtual void Render()
   {
