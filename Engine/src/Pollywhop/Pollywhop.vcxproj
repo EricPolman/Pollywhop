@@ -85,15 +85,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Graphics\DemoTriangleMesh.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Graphics\Mesh.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graphics\DemoTriangleMesh.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Graphics\Mesh.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Pollywhop.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

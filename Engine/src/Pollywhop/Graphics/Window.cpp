@@ -47,6 +47,8 @@ public:
       _engine->Render();
 
       glfwPollEvents();
+      if (glfwGetKey(_glfwWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(_glfwWindow, GL_TRUE);
       glfwSwapBuffers(_glfwWindow);
     }
   }

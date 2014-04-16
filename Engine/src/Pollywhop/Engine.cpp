@@ -5,7 +5,7 @@
 #include <glew\glew.h>
 #include <GLFW\glfw3.h>
 
-#include "Graphics/Mesh.h"
+#include "Graphics/DemoTriangleMesh.h"
 
 using namespace PW;
 
@@ -14,6 +14,7 @@ Engine::~Engine()
 }
 
 std::shared_ptr<Graphics::Mesh> mesh;
+std::shared_ptr<Graphics::Mesh> mesh2;
 
 class Engine_Impl : public Engine
 {
@@ -41,8 +42,10 @@ class Engine_Impl : public Engine
       exit(EXIT_FAILURE);
     }
 
-    mesh = Graphics::Mesh::Create();
+    mesh = Graphics::DemoTriangleMesh::Create();
     mesh->Load();
+    mesh2 = Graphics::DemoTriangleMesh::Create();
+    mesh2->Load();
   }
 
   virtual void Run()
