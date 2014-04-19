@@ -11,7 +11,7 @@ namespace PW
     public:
       virtual ~DemoTriangleMesh(){}
 
-      virtual void Load() = 0;
+      virtual void Load(const std::string& a_path) = 0;
       virtual void Render() = 0;
       virtual void Unload() = 0;
 

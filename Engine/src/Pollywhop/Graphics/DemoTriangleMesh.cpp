@@ -11,21 +11,6 @@ using namespace PW::Graphics;
 typedef glm::vec3 Vertex;
 typedef glm::vec2 TexCoord;
 
-const GLchar* vertexSource =
-"#version 150 core\n"
-"uniform vec4 triangleColor;"
-"in vec3 position;"
-"void main() {"
-"   gl_Position = vec4(position, 1.0);"
-"}";
-const GLchar* fragmentSource =
-"#version 150 core\n"
-"uniform vec4 triangleColor;"
-"out vec4 outColor;"
-"void main() {"
-"   outColor = vec4(triangleColor);"
-"}";
-
 const GLuint elements[] = {
   0, 1, 2
 };
@@ -33,61 +18,30 @@ const GLuint elements[] = {
 class DemoTriangleMesh_Impl : public DemoTriangleMesh
 {
 public:
-  virtual void Load()
+  virtual void Load(const std::string& a_path)
   {
-    glGenBuffers(1, &ebo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glGenBuffers(1, &_ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,
       sizeof(elements), elements, GL_STATIC_DRAW);
-
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
 
     _vertices.push_back(Vertex(0.0f, 0.5f, 0.0f));
     _vertices.push_back(Vertex(0.5f, -0.5f, 0.0f));
     _vertices.push_back(Vertex(-0.5f, -0.5f, 0.0f));
-    glGenBuffers(1, &vbo); // Generate 1 buffer
+    glGenBuffers(1, &_vbo); // Generate 1 buffer
 
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, _vbo);
     glBufferData(GL_ARRAY_BUFFER, _vertices.size() * sizeof(Vertex), &_vertices.front(), GL_STATIC_DRAW);
 
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexSource, NULL);
-    glCompileShader(vertexShader);
-
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-    glCompileShader(fragmentShader);
-
-    shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-
-    glBindFragDataLocation(shaderProgram, 0, "outColor");
-
-    glLinkProgram(shaderProgram);
-    glUseProgram(shaderProgram);
-
-    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-    glEnableVertexAttribArray(posAttrib);
-    glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    _uniColor = glGetUniformLocation(shaderProgram, "triangleColor");
-    glUniform4f(_uniColor, 1.0f, 0.0f, 0.0f, 1.0f);
   }
 
   virtual void Render()
   {
-    float time = glfwGetTime();
-    glUniform4f(_uniColor, (sin(time * 4.0f) + 1.0f) / 2.0f, 0.0f, 0.0f, 1.0f);
-
-    // Bind
-    glBindVertexArray(vao);
-    glUseProgram(shaderProgram);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-
+    glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   }
 
   virtual void Unload()
@@ -95,8 +49,6 @@ public:
 
   }
 protected:
-  GLuint vao, vbo, ebo, shaderProgram;
-  GLint _uniColor;
   std::vector<Vertex> _vertices;
   std::vector<Vertex> _normals;
   std::vector<TexCoord> _texCoords;

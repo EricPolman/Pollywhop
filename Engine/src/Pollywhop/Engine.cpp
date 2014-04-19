@@ -6,6 +6,7 @@
 #include <GLFW\glfw3.h>
 
 #include "Graphics/DemoTriangleMesh.h"
+#include "Graphics/Renderer.h"
 
 using namespace PW;
 
@@ -14,7 +15,7 @@ Engine::~Engine()
 }
 
 std::shared_ptr<Graphics::Mesh> mesh;
-std::shared_ptr<Graphics::Mesh> mesh2;
+std::shared_ptr<Graphics::Renderer> renderer;
 
 class Engine_Impl : public Engine
 {
@@ -42,10 +43,12 @@ class Engine_Impl : public Engine
       exit(EXIT_FAILURE);
     }
 
-    mesh = Graphics::DemoTriangleMesh::Create();
-    mesh->Load();
-    mesh2 = Graphics::DemoTriangleMesh::Create();
-    mesh2->Load();
+    //mesh = Graphics::DemoTriangleMesh::Create();
+    //mesh->Load("");
+    mesh.reset(new Graphics::Mesh);
+    mesh->Load("Resources/Meshes/cube.obj");
+    renderer.reset(new Graphics::Renderer());
+    renderer->SetMesh(mesh);
   }
 
   virtual void Run()
@@ -58,7 +61,7 @@ class Engine_Impl : public Engine
    */
   virtual void Update()
   {
-    mesh->Render();
+    renderer->Render();
   }
   virtual void Render()
   {

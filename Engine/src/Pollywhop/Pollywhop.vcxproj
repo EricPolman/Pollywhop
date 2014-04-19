@@ -90,6 +90,8 @@
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Graphics\Mesh.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Graphics\Renderer.h" />
+    <ClInclude Include="ObjFileParser.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -98,7 +100,9 @@
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Graphics\Mesh.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjFileParser.cpp" />
     <ClCompile Include="Pollywhop.cpp" />
+    <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
