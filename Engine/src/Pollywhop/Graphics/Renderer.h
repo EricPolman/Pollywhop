@@ -18,7 +18,7 @@ namespace PW
       std::shared_ptr<Mesh> GetMesh() { return _mesh; }
     private:
       std::shared_ptr<Mesh> _mesh;
-      unsigned int _vao, _shaderProgram, _uniColor;
+      unsigned int _vao, _shaderProgram, _uniColor, _model, _view, _projection;
     };
   }
 }
